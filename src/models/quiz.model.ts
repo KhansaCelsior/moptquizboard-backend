@@ -1,14 +1,13 @@
 import { FillUpQuestionsModel } from './fillUpQuestions.model';
-import { FillUpQuestions } from './../interfaces/fillUpQuestions.interface';
 import { TfQuestionsModel } from './tfQuestions.model';
-import { TfQuestions } from './../interfaces/tfQuestions.interface';
 import { McqQuestionsModel } from './mcqQuestions.model';
 import { McqQuestions } from './../interfaces/mcqQuestions.interface';
 import { CategoryModel } from './category.model';
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { Quiz } from '@interfaces/quiz.interface';
+import { UserModel } from './users.model';
 
-export type QuizCreationAttributes = Optional<Quiz, 'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink'>;
+export type QuizCreationAttributes = Optional<Quiz, 'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink'| 'startdate'|'enddate'>;
 
 export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Quiz {
   public quizid: number;
@@ -17,6 +16,9 @@ export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Qu
   public quizname: string;
   public questiontype: string;
   public quizlink: string;
+  public startdate: Date;
+  public enddate: Date;
+  //declare userid: ForeignKey<UserModel['userid']>;
 }
 
 export default function (sequelize: Sequelize): typeof QuizModel {
@@ -47,6 +49,14 @@ export default function (sequelize: Sequelize): typeof QuizModel {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
+      startdate: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      enddate: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: 'quiz',
@@ -55,16 +65,21 @@ export default function (sequelize: Sequelize): typeof QuizModel {
   );
 
   return QuizModel;
+
+  QuizModel.belongsToMany(UserModel, {
+    through: 'userquiz'
+  });
+
+  QuizModel.hasMany(McqQuestionsModel, {
+    foreignKey: 'questionId',
+    as: 'McqQuestions' 
+  });
+  McqQuestionsModel.belongsTo(QuizModel);
+
+  QuizModel.hasMany(TfQuestionsModel, { foreignKey: 'questionId' });
+  TfQuestionsModel.belongsTo(QuizModel);
+
+  QuizModel.hasMany(FillUpQuestionsModel, { foreignKey: 'questionId' });
+  FillUpQuestionsModel.belongsTo(QuizModel);
 }
 // QuizModel.hasMany(McqQuestionsModel, { sourceKey: foreignKey: 'questionId' });
-// QuizModel.hasMany(McqQuestionsModel, {
-//   foreignKey: 'questionId',
-//   as: 'McqQuestions' 
-// });
-// McqQuestionsModel.belongsTo(QuizModel);
-
-// QuizModel.hasMany(TfQuestionsModel, { foreignKey: 'questionId' });
-// TfQuestionsModel.belongsTo(QuizModel);
-
-// QuizModel.hasMany(FillUpQuestionsModel, { foreignKey: 'questionId' });
-// FillUpQuestionsModel.belongsTo(QuizModel);

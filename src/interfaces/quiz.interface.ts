@@ -5,4 +5,6 @@ export interface Quiz {
   quizname: string;
   questiontype: string;
   quizlink: string;
+  startdate: Date;
+  enddate: Date;
 }

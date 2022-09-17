@@ -49,7 +49,11 @@ export default function (sequelize: Sequelize): typeof UserModel {
   );
 
   return UserModel;
+
+  UserModel.belongsToMany(QuizModel, {
+    through: 'userquiz'
+  });
 }
-// UserModel.belongsToMany(QuizModel, {
+//  UserModel.belongsToMany(QuizModel, {
 //   through: 'userQuiz'
 // });

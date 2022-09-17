@@ -1,4 +1,4 @@
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsNumber, IsDate } from 'class-validator';
 
 export class CreateQuizDto {
   @IsNumber()
@@ -11,4 +11,8 @@ export class CreateQuizDto {
   public questiontype: string;
   @IsString()
   public quizlink: string; 
+  @IsDate()
+  public startdate: Date; 
+  @IsDate()
+  public enddate: Date; 
 }
