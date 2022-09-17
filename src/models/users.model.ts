@@ -1,21 +1,21 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { User } from '@interfaces/users.interface';
 
-export type UserCreationAttributes = Optional<User, 'id' | 'email' | 'password'>;
+export type UserCreationAttributes = Optional<User, 'userId' | 'email' | 'password'|'firstName' | 'lastName' | 'isAdmin'>;
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
-  public id: number;
+  public userId: number;
   public email: string;
   public password: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public firstName: string;
+  public lastName: string;
+  public isAdmin: number;
 }
 
 export default function (sequelize: Sequelize): typeof UserModel {
   UserModel.init(
     {
-      id: {
+      userId: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
@@ -27,6 +27,18 @@ export default function (sequelize: Sequelize): typeof UserModel {
       password: {
         allowNull: false,
         type: DataTypes.STRING(255),
+      },
+      firstName: {
+        allowNull: false,
+        type: DataTypes.STRING(255),
+      },
+      lastName: {
+        allowNull: false,
+        type: DataTypes.STRING(255),
+      },
+      isAdmin: {
+        allowNull: false,
+        type: DataTypes.INTEGER(),
       },
     },
     {
