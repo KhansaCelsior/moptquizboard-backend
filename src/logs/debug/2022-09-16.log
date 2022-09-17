@@ -1,0 +1,17 @@
+2022-09-16 12:46:13 info: 40ms Executed (default): SELECT `id`, `email`, `password`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `UserModel` WHERE `UserModel`.`email` = 'example1@email.com' LIMIT 1;
+2022-09-16 12:46:13 error: [POST] /signup >> StatusCode:: 409, Message:: This email example1@email.com already exists
+2022-09-16 12:46:13 info: [0mPOST /signup [33m409[0m 417.156 ms - 58[0m
+2022-09-16 14:21:42 info: =================================
+2022-09-16 14:21:42 info: ======= ENV: development =======
+2022-09-16 14:21:42 info: 🚀 App listening on the port 3000
+2022-09-16 14:21:42 info: =================================
+2022-09-16 14:21:42 info: 3ms Executed (default): SELECT 1+1 AS result
+2022-09-16 14:21:42 info: 41ms Executed (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'dev'
+2022-09-16 14:21:42 info: 13ms Executed (default): SHOW INDEX FROM `users`
+2022-09-16 14:23:32 info: =================================
+2022-09-16 14:23:32 info: ======= ENV: development =======
+2022-09-16 14:23:32 info: 🚀 App listening on the port 3000
+2022-09-16 14:23:32 info: =================================
+2022-09-16 14:23:32 info: 2ms Executed (default): SELECT 1+1 AS result
+2022-09-16 14:23:32 info: 12ms Executed (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'dev'
+2022-09-16 14:23:32 info: 5ms Executed (default): SHOW INDEX FROM `users`
