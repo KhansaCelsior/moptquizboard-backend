@@ -2,7 +2,7 @@ import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { User } from '@interfaces/users.interface';
 import { QuizModel } from './quiz.model';
 
-export type UserCreationAttributes = Optional<User, 'userid' | 'email' | 'password'|'firstname' | 'lastname' | 'isadmin'>;
+export type UserCreationAttributes = Optional<User, 'userid' | 'email' | 'password' | 'firstname' | 'lastname' | 'isadmin'>;
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
   public userid: number;
@@ -53,4 +53,3 @@ export default function (sequelize: Sequelize): typeof UserModel {
 // UserModel.belongsToMany(QuizModel, {
 //   through: 'userQuiz'
 // });
-
