@@ -2,13 +2,13 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class CreateQuizDto {
   @IsNumber()
-  public userId: number;
+  public userid: number;
   @IsString()
-  public quizName: string;
+  public quizname: string;
   @IsNumber()
-  public categoryId: number;
+  public categoryid: number;
   @IsString()
-  public questionType: string;
+  public questiontype: string;
   @IsString()
-  public quizLink: string; 
+  public quizlink: string; 
 }

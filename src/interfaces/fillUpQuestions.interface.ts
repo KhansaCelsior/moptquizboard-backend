@@ -1,7 +1,7 @@
 export interface FillUpQuestions {
-  questionId: number;
-  quizId: number;
-  questionType: string;
+  questionid: number;
+  quizid: number;
+  questiontype: string;
   question: string;
-  correctAnswer: string;
+  correctanswer: string;
 }

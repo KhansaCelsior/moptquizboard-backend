@@ -1,42 +1,49 @@
+import { FillUpQuestionsModel } from './fillUpQuestions.model';
+import { FillUpQuestions } from './../interfaces/fillUpQuestions.interface';
+import { TfQuestionsModel } from './tfQuestions.model';
+import { TfQuestions } from './../interfaces/tfQuestions.interface';
+import { McqQuestionsModel } from './mcqQuestions.model';
+import { McqQuestions } from './../interfaces/mcqQuestions.interface';
+import { CategoryModel } from './category.model';
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { Quiz } from '@interfaces/quiz.interface';
 
-export type QuizCreationAttributes = Optional<Quiz, 'quizId' | 'userId' | 'categoryId' | 'quizName' | 'questionType' | 'quizLink'>;
+export type QuizCreationAttributes = Optional<Quiz, 'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink'>;
 
 export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Quiz {
-  public quizId: number;
-  public userId: number;
-  public categoryId: number;
-  public quizName: string;
-  public questionType: string;
-  public quizLink: string;
+  public quizid: number;
+  public userid: number;
+  public categoryid: number;
+  public quizname: string;
+  public questiontype: string;
+  public quizlink: string;
 }
 
 export default function (sequelize: Sequelize): typeof QuizModel {
   QuizModel.init(
     {
-      quizId: {
+      quizid: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      userId: {
+      userid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      categoryId: {
+      categoryid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      quizName: {
+      quizname: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      questionType: {
+      questiontype: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      quizLink: {
+      quizlink: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
@@ -49,3 +56,15 @@ export default function (sequelize: Sequelize): typeof QuizModel {
 
   return QuizModel;
 }
+// QuizModel.hasMany(McqQuestionsModel, { sourceKey: foreignKey: 'questionId' });
+// QuizModel.hasMany(McqQuestionsModel, {
+//   foreignKey: 'questionId',
+//   as: 'McqQuestions' 
+// });
+// McqQuestionsModel.belongsTo(QuizModel);
+
+// QuizModel.hasMany(TfQuestionsModel, { foreignKey: 'questionId' });
+// TfQuestionsModel.belongsTo(QuizModel);
+
+// QuizModel.hasMany(FillUpQuestionsModel, { foreignKey: 'questionId' });
+// FillUpQuestionsModel.belongsTo(QuizModel);

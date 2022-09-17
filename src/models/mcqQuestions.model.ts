@@ -1,30 +1,30 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { McqQuestions } from '@interfaces/mcqQuestions.interface';
 
-export type McqQuestionsCreationAttributes = Optional<McqQuestions, 'questionId' | 'quizId' | 'questionType' | 'question' | 'correctAnswer' | 'options'>;
+export type McqQuestionsCreationAttributes = Optional<McqQuestions, 'questionid' | 'quizid' | 'questiontype' | 'question' | 'correctanswer' | 'options'>;
 
 export class McqQuestionsModel extends Model<McqQuestions, McqQuestionsCreationAttributes> implements McqQuestions {
-  public questionId: number;
-  public quizId: number;
-  public questionType: string;
+  public questionid: number;
+  public quizid: number;
+  public questiontype: string;
   public question: string;
-  public correctAnswer: string;
+  public correctanswer: string;
   public options: string;
 }
 
 export default function (sequelize: Sequelize): typeof McqQuestionsModel {
   McqQuestionsModel.init(
     {
-      questionId: {
+      questionid: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      quizId: {
+      quizid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      questionType: {
+      questiontype: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
@@ -32,7 +32,7 @@ export default function (sequelize: Sequelize): typeof McqQuestionsModel {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      correctAnswer: {
+      correctanswer: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
@@ -42,7 +42,7 @@ export default function (sequelize: Sequelize): typeof McqQuestionsModel {
       },
     },
     {
-      tableName: 'McqQuestions',
+      tableName: 'mcqquestions',
       sequelize,
     },
   );

@@ -1,5 +1,5 @@
 export interface ScoreBoard {
-  userId: number;
-  quizId: number;
+  userid: number;
+  quizid: number;
   score: number;
 }

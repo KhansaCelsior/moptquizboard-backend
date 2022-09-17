@@ -1,29 +1,29 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { FillUpQuestions } from '@interfaces/fillUpQuestions.interface';
 
-export type FillUpQuestionsCreationAttributes = Optional<FillUpQuestions, 'questionId' | 'quizId' | 'questionType' | 'question' | 'correctAnswer'>;
+export type FillUpQuestionsCreationAttributes = Optional<FillUpQuestions, 'questionid' | 'quizid' | 'questiontype' | 'question' | 'correctanswer'>;
 
 export class FillUpQuestionsModel extends Model<FillUpQuestions, FillUpQuestionsCreationAttributes> implements FillUpQuestions {
-  public questionId: number;
-  public quizId: number;
-  public questionType: string;
+  public questionid: number;
+  public quizid: number;
+  public questiontype: string;
   public question: string;
-  public correctAnswer: string;
+  public correctanswer: string;
 }
 
 export default function (sequelize: Sequelize): typeof FillUpQuestionsModel {
   FillUpQuestionsModel.init(
     {
-      questionId: {
+      questionid: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      quizId: {
+      quizid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      questionType: {
+      questiontype: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
@@ -31,13 +31,13 @@ export default function (sequelize: Sequelize): typeof FillUpQuestionsModel {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      correctAnswer: {
+      correctanswer: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
     },
     {
-      tableName: 'FillUpQuestions',
+      tableName: 'fillupquestions',
       sequelize,
     },
   );

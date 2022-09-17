@@ -2,9 +2,9 @@ import { IsNumber } from 'class-validator';
 
 export class CreateScoreBoardDto {
   @IsNumber()
-  public userId: number;
+  public userid: number;
   @IsNumber()
-  public quizId: number;
+  public quizid: number;
   @IsNumber()
   public score: number;
 
