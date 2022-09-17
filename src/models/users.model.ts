@@ -1,21 +1,22 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { User } from '@interfaces/users.interface';
+import { QuizModel } from './quiz.model';
 
-export type UserCreationAttributes = Optional<User, 'userId' | 'email' | 'password'|'firstName' | 'lastName' | 'isAdmin'>;
+export type UserCreationAttributes = Optional<User, 'userid' | 'email' | 'password'|'firstname' | 'lastname' | 'isadmin'>;
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
-  public userId: number;
+  public userid: number;
   public email: string;
   public password: string;
-  public firstName: string;
-  public lastName: string;
-  public isAdmin: number;
+  public firstname: string;
+  public lastname: string;
+  public isadmin: number;
 }
 
 export default function (sequelize: Sequelize): typeof UserModel {
   UserModel.init(
     {
-      userId: {
+      userid: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
@@ -28,15 +29,15 @@ export default function (sequelize: Sequelize): typeof UserModel {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      firstName: {
+      firstname: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      lastName: {
+      lastname: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      isAdmin: {
+      isadmin: {
         allowNull: false,
         type: DataTypes.INTEGER(),
       },
@@ -49,3 +50,7 @@ export default function (sequelize: Sequelize): typeof UserModel {
 
   return UserModel;
 }
+// UserModel.belongsToMany(QuizModel, {
+//   through: 'userQuiz'
+// });
+

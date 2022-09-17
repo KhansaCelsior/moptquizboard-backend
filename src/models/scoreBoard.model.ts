@@ -1,22 +1,23 @@
+import { UserModel } from '@models/users.model';
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { ScoreBoard } from '@interfaces/scoreBoard.interface';
 
-export type ScoreBoardCreationAttributes = Optional<ScoreBoard, 'userId' | 'quizId'| 'score'>;
+export type ScoreBoardCreationAttributes = Optional<ScoreBoard, 'userid' | 'quizid'| 'score'>;
 
 export class ScoreBoardModel extends Model<ScoreBoard, ScoreBoardCreationAttributes> implements ScoreBoard {
-  public userId: number;
-  public quizId: number;
+  public userid: number;
+  public quizid: number;
   public score: number;
 }
 
 export default function (sequelize: Sequelize): typeof ScoreBoardModel {
   ScoreBoardModel.init(
     {
-      userId: {
+      userid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      quizId: {
+      quizid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -26,10 +27,12 @@ export default function (sequelize: Sequelize): typeof ScoreBoardModel {
       },
     },
     {
-      tableName: 'ScoreBoard',
+      tableName: 'scoreboard',
       sequelize,
     },
   );
-
   return ScoreBoardModel;
 }
+// ScoreBoardModel.belongsToMany(UserModel, {
+//   through: 'userScore'
+// });

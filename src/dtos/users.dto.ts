@@ -8,7 +8,7 @@ export class CreateUserDto {
   @IsString()
   public firstname: string;
   @IsString()
-  public lastName: string;
+  public lastname: string;
   @IsNumber()
-  public isAdmin: number;
+  public isadmin: number;
 }

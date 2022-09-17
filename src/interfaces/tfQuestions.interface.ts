@@ -1,7 +1,7 @@
 export interface TfQuestions {
-  questionId: number;
-  quizId: number;
-  questionType: string;
+  questionid: number;
+  quizid: number;
+  questionyype: string;
   question: string;
-  correctAnswer: string;
+  correctanswer: string;
 }

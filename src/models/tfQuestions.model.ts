@@ -1,29 +1,29 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { TfQuestions } from '@interfaces/tfQuestions.interface';
 
-export type TfQuestionsCreationAttributes = Optional<TfQuestions, 'questionId' | 'quizId' | 'questionType' | 'question' | 'correctAnswer'>;
+export type TfQuestionsCreationAttributes = Optional<TfQuestions, 'questionid' | 'quizid' | 'questiontype' | 'question' | 'correctanswer'>;
 
 export class TfQuestionsModel extends Model<TfQuestions, TfQuestionsCreationAttributes> implements TfQuestions {
-  public questionId: number;
-  public quizId: number;
-  public questionType: string;
+  public questionid: number;
+  public quizid: number;
+  public questiontype: string;
   public question: string;
-  public correctAnswer: string;
+  public correctanswer: string;
 }
 
 export default function (sequelize: Sequelize): typeof TfQuestionsModel {
   TfQuestionsModel.init(
     {
-      questionId: {
+      questionid: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      quizId: {
+      quizid: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      questionType: {
+      questiontype: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
@@ -31,13 +31,13 @@ export default function (sequelize: Sequelize): typeof TfQuestionsModel {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
-      correctAnswer: {
+      correctanswer: {
         allowNull: false,
         type: DataTypes.STRING(255),
       },
     },
     {
-      tableName: 'TfQuestions',
+      tableName: 'tfquestions',
       sequelize,
     },
   );

@@ -1,8 +1,8 @@
 export interface Quiz {
-  quizId: number;
-  userId: number;
-  categoryId: number;
-  quizName: string;
-  questionType: string;
-  quizLink: string;
+  quizid: number;
+  userid: number;
+  categoryid: number;
+  quizname: string;
+  questiontype: string;
+  quizlink: string;
 }

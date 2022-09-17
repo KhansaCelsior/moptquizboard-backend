@@ -2,13 +2,13 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class CreateMcqQuestionsDto {
   @IsNumber()
-  public quizId: number;
+  public quizid: number;
   @IsString()
-  public questionType: string;
+  public questiontype: string;
   @IsString()
   public question: string;
   @IsString()
-  public correctAnswer: string;
+  public correctanswer: string;
   @IsString()
   public options: string;
 }
