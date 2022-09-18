@@ -4,12 +4,23 @@ import { CreateUserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import { isEmpty } from '@utils/util';
+import Op from 'sequelize/types/operators';
 
 class UserService {
   public users = DB.Users;
 
   public async findAllUser(): Promise<User[]> {
     const allUser: User[] = await this.users.findAll();
+    return allUser;
+  }
+
+  public async findAllUserWithUserId(userData): Promise<User[]> {
+    console.log('userData: 11', userData);
+    const allUser = await this.users.findAll({
+      where: {
+        userid: userData.userids,
+      },
+    });
     return allUser;
   }
 

@@ -5,6 +5,7 @@ import { QuizModel } from './quiz.model';
 export type UserCreationAttributes = Optional<User, 'userid' | 'email' | 'password' | 'firstname' | 'lastname' | 'isadmin'>;
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
+ 
   public userid: number;
   public email: string;
   public password: string;

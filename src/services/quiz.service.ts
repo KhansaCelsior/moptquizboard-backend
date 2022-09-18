@@ -56,6 +56,25 @@ class QuizService {
     return createQuizQuestionsData;
   }
 
+  public async getQuestionById(questionid: number): Promise<McqQuestions> {
+    if (isEmpty(questionid)) throw new HttpException(400, 'questionid is empty');
+
+    const findQuestion: McqQuestions = await this.quizMcqQuestions.findByPk(questionid);
+    if (!findQuestion) throw new HttpException(409, "question doesn't exist");
+    return findQuestion;
+  }
+
+  public async updateGetQuestionById(questionid: number, questionData: CreateMcqQuestionsDto): Promise<McqQuestions> {
+    if (isEmpty(questionData)) throw new HttpException(400, 'score data is empty');
+
+    await this.quizMcqQuestions.update({ ...questionData }, { where: { questionid: questionid } });
+
+    const updateQuestion: McqQuestions = await this.quizMcqQuestions.findOne({
+      where: { questionid: questionid },
+    });
+    return updateQuestion;
+  }
+
   public async inviteParticipantInQuiz(participateData: CreateScoreBoardDto): Promise<ScoreBoard> {
     if (isEmpty(participateData)) throw new HttpException(400, 'Invite Participate Data is empty');
     const getGenerateLink: any = generateQuizLink(participateData.quizid, participateData.userid);
@@ -106,7 +125,7 @@ class QuizService {
     // eslint-disable-next-line prefer-const
     quizAllParticipantScore = {
       quiz: findQuiz,
-      getParticpantScore 
+      getParticpantScore,
     };
     return quizAllParticipantScore;
   }

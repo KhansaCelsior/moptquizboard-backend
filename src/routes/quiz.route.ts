@@ -22,6 +22,8 @@ class QuizRoute implements Routes {
     this.router.post(`${this.path}/invite`, this.quizController.inviteParticipantInQuiz);
     this.router.put(`${this.path}/invite/:id(\\d+)`, this.quizController.updateParticipantScore);
     this.router.get(`${this.path}/allparticipantscores/:id(\\d+)`, this.quizController.adminGetAllParticipantScore);
+    this.router.get(`${this.path}/question/:id(\\d+)`, this.quizController.getQuestionById);
+    this.router.patch(`${this.path}/question/:id(\\d+)`, this.quizController.getQuestionById);
   }
 }
 

@@ -67,6 +67,29 @@ class QuizController {
     }
   };
 
+  public getQuestionById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const questionId = Number(req.params.id);
+      const getQuestion: McqQuestions = await this.quizService.getQuestionById(questionId);
+
+      res.status(200).json({ data: getQuestion, message: 'get' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public updateGetQuestionById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const questionid = Number(req.params.id);
+      const questionByIdPayload: CreateMcqQuestionsDto = req.body;
+      const updateGetQuestionById: McqQuestions = await this.quizService.updateGetQuestionById(questionid, questionByIdPayload);
+
+      res.status(200).json({ data: updateGetQuestionById, message: 'updated' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public inviteParticipantInQuiz = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const participateData: CreateScoreBoardDto = req.body;
@@ -101,8 +124,6 @@ class QuizController {
       next(error);
     }
   };
-
-   
 }
 
 export default QuizController;

@@ -60,6 +60,18 @@ class UsersController {
       next(error);
     }
   };
+
+  public getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userData = req.body;
+      console.log('userData: ', userData);
+      const findAllUsersData: User[] = await this.userService.findAllUserWithUserId(userData);
+
+      res.status(200).json({ data: findAllUsersData, message: 'findAll' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default UsersController;
