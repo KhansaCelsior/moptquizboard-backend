@@ -30,9 +30,11 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.8",
     "sequelize": "^6.21.3",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.5.0",
+    "urlgenerator": "^0.7.4",
     "winston": "^3.8.1",
     "winston-daily-rotate-file": "^4.7.1"
   },

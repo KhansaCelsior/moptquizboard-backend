@@ -7,7 +7,10 @@ import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { Quiz } from '@interfaces/quiz.interface';
 import { UserModel } from './users.model';
 
-export type QuizCreationAttributes = Optional<Quiz, 'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink'| 'startdate'|'enddate'>;
+export type QuizCreationAttributes = Optional<
+  Quiz,
+  'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink' | 'startdate' | 'enddate'
+>;
 
 export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Quiz {
   public quizid: number;
@@ -42,19 +45,19 @@ export default function (sequelize: Sequelize): typeof QuizModel {
         type: DataTypes.STRING(255),
       },
       questiontype: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING(255),
       },
       quizlink: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING(255),
       },
       startdate: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
       enddate: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
     },
@@ -64,22 +67,22 @@ export default function (sequelize: Sequelize): typeof QuizModel {
     },
   );
 
+  // QuizModel.belongsToMany(UserModel, {
+  //   through: 'userquiz'
+  // });
+
+  // QuizModel.hasMany(McqQuestionsModel, {
+  //   foreignKey: 'questionId',
+  //   as: 'McqQuestions'
+  // });
+  // McqQuestionsModel.belongsTo(QuizModel);
+
+  // QuizModel.hasMany(TfQuestionsModel, { foreignKey: 'questionId' });
+  // TfQuestionsModel.belongsTo(QuizModel);
+
+  // QuizModel.hasMany(FillUpQuestionsModel, { foreignKey: 'questionId' });
+  // FillUpQuestionsModel.belongsTo(QuizModel);
+
   return QuizModel;
-
-  QuizModel.belongsToMany(UserModel, {
-    through: 'userquiz'
-  });
-
-  QuizModel.hasMany(McqQuestionsModel, {
-    foreignKey: 'questionId',
-    as: 'McqQuestions' 
-  });
-  McqQuestionsModel.belongsTo(QuizModel);
-
-  QuizModel.hasMany(TfQuestionsModel, { foreignKey: 'questionId' });
-  TfQuestionsModel.belongsTo(QuizModel);
-
-  QuizModel.hasMany(FillUpQuestionsModel, { foreignKey: 'questionId' });
-  FillUpQuestionsModel.belongsTo(QuizModel);
 }
 // QuizModel.hasMany(McqQuestionsModel, { sourceKey: foreignKey: 'questionId' });

@@ -29,9 +29,8 @@ export default function (sequelize: Sequelize): typeof CategoryModel {
   );
 
   return CategoryModel;
-  
+
   CategoryModel.belongsToMany(QuizModel, {
-    through: 'quizCategory'
+    through: 'quizCategory',
   });
 }
-
