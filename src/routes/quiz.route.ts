@@ -25,6 +25,7 @@ class QuizRoute implements Routes {
     this.router.get(`${this.path}/question/:id(\\d+)`, this.quizController.getQuestionById);
     this.router.patch(`${this.path}/question/:id(\\d+)`, this.quizController.getQuestionById);
     this.router.get(`${this.path}/user/question/:id(\\d+)`, this.quizController.getAllQuestionByQuizId);
+    
   }
 }
 

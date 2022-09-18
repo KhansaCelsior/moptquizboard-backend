@@ -64,10 +64,14 @@ class QuizService {
     return findQuestion;
   }
 
-  public async getAllQuestionByQuizId(quizid: number): Promise<McqQuestions> {
+  public async getAllQuestionByQuizId(quizid: number): Promise<McqQuestions[]> {
     if (isEmpty(quizid)) throw new HttpException(400, 'quizid is empty');
 
-    const findAllQuestion: McqQuestions = await this.quizMcqQuestions.findByPk(quizid);
+    const findAllQuestion: McqQuestions[] = await this.quizMcqQuestions.findAll({
+      where: {
+        quizid: quizid,
+      },
+    });
     if (!findAllQuestion) throw new HttpException(409, "Quiz question doesn't exist");
     return findAllQuestion;
   }

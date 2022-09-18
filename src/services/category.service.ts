@@ -14,13 +14,9 @@ class CategoryService {
 
   public async createCategory(categoryData: CreateCategoryDto[]): Promise<Category> {
     if (isEmpty(categoryData)) throw new HttpException(400, 'categoryData is empty');
-    if (categoryData.length) {
-      let createCategoryData: Category;
-      categoryData.forEach(async ele => {
-        createCategoryData = await this.categorys.create({ ...ele });
-      });
-      return createCategoryData;
-    }
+    const createCategoryData = await this.categorys.create({ ...categoryData });
+
+    return createCategoryData;
   }
 }
 
