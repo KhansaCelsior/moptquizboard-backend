@@ -78,6 +78,17 @@ class QuizController {
     }
   };
 
+  public getAllQuestionByQuizId = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const quizId = Number(req.params.id);
+      const getQuestion: McqQuestions = await this.quizService.getAllQuestionByQuizId(quizId);
+
+      res.status(200).json({ data: getQuestion, message: 'getallquestions' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public updateGetQuestionById = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const questionid = Number(req.params.id);

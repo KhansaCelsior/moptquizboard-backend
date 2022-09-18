@@ -64,6 +64,14 @@ class QuizService {
     return findQuestion;
   }
 
+  public async getAllQuestionByQuizId(quizid: number): Promise<McqQuestions> {
+    if (isEmpty(quizid)) throw new HttpException(400, 'quizid is empty');
+
+    const findAllQuestion: McqQuestions = await this.quizMcqQuestions.findByPk(quizid);
+    if (!findAllQuestion) throw new HttpException(409, "Quiz question doesn't exist");
+    return findAllQuestion;
+  }
+
   public async updateGetQuestionById(questionid: number, questionData: CreateMcqQuestionsDto): Promise<McqQuestions> {
     if (isEmpty(questionData)) throw new HttpException(400, 'score data is empty');
 
@@ -106,22 +114,7 @@ class QuizService {
       raw: true,
       where: { quizid: quizId },
     });
-    //return getParticpantScore;
-    console.log('getParticpantScore: ', getParticpantScore);
     let quizAllParticipantScore: any;
-    const getUser = [];
-    // let findUser;
-    // if (getParticpantScore.length) {
-    //   getParticpantScore.forEach(async ele => {
-    //     findUser = await this.users.findOne({ raw: true, where: { userid: ele.userid } });
-    //     console.log('findUser: ', findUser);
-    //     //getUser.push(findUser);
-    //   });
-    // }
-    // let test = [...findUser];
-    // console.log('getUser: ', getUser);
-    //const userQuiz = merge(getUser, getParticpantScore);
-
     // eslint-disable-next-line prefer-const
     quizAllParticipantScore = {
       quiz: findQuiz,
