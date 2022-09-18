@@ -17,7 +17,7 @@ class CategoryController {
 
   public createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const categoryData: CreateCategoryDto = req.body;
+      const categoryData: CreateCategoryDto[] = req.body;
       const createUserData: Category = await this.categoryService.createCategory(categoryData);
 
       res.status(201).json({ data: createUserData, message: 'created' });

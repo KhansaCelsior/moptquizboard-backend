@@ -9,10 +9,4 @@ export class CreateQuizDto {
   public categoryid: number;
   @IsString()
   public questiontype: string;
-  @IsString()
-  public quizlink: string;
-  @IsString()
-  public startdate: Date;
-  @IsString()
-  public enddate: Date;
 }

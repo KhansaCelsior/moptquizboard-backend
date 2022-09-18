@@ -7,7 +7,6 @@ import authMiddleware from '@/middlewares/auth.middleware';
 
 class QuizRoute implements Routes {
   public path = '/quiz';
-  public questionPath = '/quiz/question';
   public router = Router();
   public quizController = new QuizController();
 
@@ -19,7 +18,10 @@ class QuizRoute implements Routes {
     this.router.post(`${this.path}`, validationMiddleware(CreateQuizDto, 'body'), this.quizController.createQuiz);
     this.router.get(`${this.path}/:id(\\d+)`, this.quizController.getQuizById);
     this.router.patch(`${this.path}/:id(\\d+)`, this.quizController.updateQuiz);
-    this.router.post(`${this.questionPath}`, this.quizController.createQuizQuestion);
+    this.router.post(`${this.path}/question`, this.quizController.createQuizQuestion);
+    this.router.post(`${this.path}/invite`, this.quizController.inviteParticipantInQuiz);
+    this.router.put(`${this.path}/invite/:id(\\d+)`, this.quizController.updateParticipantScore);
+    this.router.get(`${this.path}/allparticipantscores/:id(\\d+)`, this.quizController.adminGetAllParticipantScore);
   }
 }
 

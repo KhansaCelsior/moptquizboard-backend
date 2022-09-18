@@ -2,7 +2,7 @@ import { UserModel } from '@models/users.model';
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { ScoreBoard } from '@interfaces/scoreBoard.interface';
 
-export type ScoreBoardCreationAttributes = Optional<ScoreBoard, 'userid' | 'quizid'| 'score' |'quizlink'|'quizcode'>;
+export type ScoreBoardCreationAttributes = Optional<ScoreBoard, 'userid' | 'quizid' | 'score' | 'quizlink' | 'quizcode'>;
 
 export class ScoreBoardModel extends Model<ScoreBoard, ScoreBoardCreationAttributes> implements ScoreBoard {
   public userid: number;
@@ -43,9 +43,9 @@ export default function (sequelize: Sequelize): typeof ScoreBoardModel {
   );
 
 
-  // ScoreBoardModel.belongsToMany(UserModel, {
-  //   through: 'userScore'
-  // });
+  ScoreBoardModel.belongsToMany(UserModel, {
+    through: 'userScore'
+  });
 
   return ScoreBoardModel;
 }

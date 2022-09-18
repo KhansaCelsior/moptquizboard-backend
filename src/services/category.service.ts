@@ -12,10 +12,15 @@ class CategoryService {
     return allCategory;
   }
 
-  public async createCategory(categoryData: CreateCategoryDto): Promise<Category> {
+  public async createCategory(categoryData: CreateCategoryDto[]): Promise<Category> {
     if (isEmpty(categoryData)) throw new HttpException(400, 'categoryData is empty');
-    const createCategoryData: Category = await this.categorys.create({ ...categoryData });
-    return createCategoryData;
+    if (categoryData.length) {
+      let createCategoryData: Category;
+      categoryData.forEach(async ele => {
+        createCategoryData = await this.categorys.create({ ...ele });
+      });
+      return createCategoryData;
+    }
   }
 }
 

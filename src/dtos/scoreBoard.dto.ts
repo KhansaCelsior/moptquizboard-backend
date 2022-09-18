@@ -11,5 +11,4 @@ export class CreateScoreBoardDto {
   public quizlink: string;
   @IsString()
   public quizcode: string;
-
 }

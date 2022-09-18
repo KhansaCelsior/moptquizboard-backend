@@ -7,10 +7,7 @@ import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { Quiz } from '@interfaces/quiz.interface';
 import { UserModel } from './users.model';
 
-export type QuizCreationAttributes = Optional<
-  Quiz,
-  'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype' | 'quizlink' | 'startdate' | 'enddate'
->;
+export type QuizCreationAttributes = Optional<Quiz, 'quizid' | 'userid' | 'categoryid' | 'quizname' | 'questiontype'>;
 
 export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Quiz {
   public quizid: number;
@@ -19,8 +16,6 @@ export class QuizModel extends Model<Quiz, QuizCreationAttributes> implements Qu
   public quizname: string;
   public questiontype: string;
   public quizlink: string;
-  public startdate: Date;
-  public enddate: Date;
   //declare userid: ForeignKey<UserModel['userid']>;
 }
 
@@ -47,18 +42,6 @@ export default function (sequelize: Sequelize): typeof QuizModel {
       questiontype: {
         allowNull: true,
         type: DataTypes.STRING(255),
-      },
-      quizlink: {
-        allowNull: true,
-        type: DataTypes.STRING(255),
-      },
-      startdate: {
-        allowNull: true,
-        type: DataTypes.DATE,
-      },
-      enddate: {
-        allowNull: true,
-        type: DataTypes.DATE,
       },
     },
     {

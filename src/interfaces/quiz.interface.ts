@@ -4,7 +4,4 @@ export interface Quiz {
   categoryid: number;
   quizname: string;
   questiontype: string;
-  quizlink: string;
-  startdate: Date;
-  enddate: Date;
 }
