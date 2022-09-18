@@ -41,9 +41,11 @@ export default function (sequelize: Sequelize): typeof ScoreBoardModel {
       sequelize,
     },
   );
-  return ScoreBoardModel;
 
-  ScoreBoardModel.belongsToMany(UserModel, {
-    through: 'userScore'
-  });
+
+  // ScoreBoardModel.belongsToMany(UserModel, {
+  //   through: 'userScore'
+  // });
+
+  return ScoreBoardModel;
 }
