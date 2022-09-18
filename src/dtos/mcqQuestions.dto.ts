@@ -10,5 +10,11 @@ export class CreateMcqQuestionsDto {
   @IsString()
   public correctanswer: string;
   @IsString()
-  public options: string;
+  public option1: string;
+  @IsString()
+  public option2: string;
+  @IsString()
+  public option3: string;
+  @IsString()
+  public option4: string;
 }

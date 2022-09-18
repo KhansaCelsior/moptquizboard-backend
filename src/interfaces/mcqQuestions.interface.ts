@@ -4,5 +4,8 @@ export interface McqQuestions {
   questiontype: string;
   question: string;
   correctanswer: string;
-  options: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
 }
